@@ -1,6 +1,16 @@
 /*
  * Create a list that holds all of your cards
  */
+const diamond = "<li class='card'><i class='fa fa-diamond'></i></li>";
+const plane = "<li class='card'><i class='fa fa-paper-plane-o'></i></li>";
+const anchor = "<li class='card'><i class='fa fa-anchor'></i></li>";
+const bolt = "<li class='card'><i class='fa fa-bolt'></i></li>";
+const cube = "<li class='card'><i class='fa fa-cube'></i></li>";
+const leaf = "<li class='card'><i class='fa fa-leaf'></i></li>";
+const bicycle = "<li class='card'><i class='fa fa-bicycle'></i></li>";
+const bomb = "<li class='card'><i class='fa fa-diamond'></i></li>";
+
+let list = [diamond, plane, anchor, bolt, cube, leaf, bicycle, bomb, diamond, plane, anchor, bolt, cube, leaf, bicycle, bomb];
 
 
 /*
@@ -24,6 +34,13 @@ function shuffle(array) {
 
     return array;
 }
+
+shuffle(list);
+
+for(let x = 0; x < list.length; x++){
+    $(".deck").prepend(list[x]);
+}
+
 
 
 /*
