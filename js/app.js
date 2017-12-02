@@ -16,6 +16,10 @@ let class1 = "";
 let choice1 = "";
 let choice2 = "";
 
+function movesNum(){
+    let moves = $(".moves");
+    moves.html((parseInt(moves.html(),10)) + 1);
+}
 
 /*
  * Display the cards on the page
@@ -55,7 +59,8 @@ $("li").click(function(){
                 console.log($(this));
                 $(this).removeClass("open show");
                 class1 = "";
-                choice1 = "";      
+                choice1 = "";
+                movesNum();
             }else{
                 console.log($(this)); 
                 choice1.removeClass("open show");
@@ -70,14 +75,12 @@ $("li").click(function(){
                     $(this).addClass("open show");
                     choice1 = $(this);
                     class1 = $(this).children('i').attr("class");
-                    console.log(choice1);
                 }else{
                     if(choice2 === ""){
                        choice1.removeClass("open show");
                         $(this).addClass("open show");
                         choice1 = $(this);
                         class1 = $(this).children('i').attr("class");
-                        console.log(choice1); 
                     }else{
                         choice1.removeClass("open show");
                         choice2.removeClass("open show");
@@ -85,7 +88,6 @@ $("li").click(function(){
                         $(this).addClass("open show");
                         choice1 = $(this);
                         class1 = $(this).children('i').attr("class");
-                        console.log(choice1);
                     }  
                 }
             }else if($(this).children('i').attr("class") === class1){
@@ -94,10 +96,12 @@ $("li").click(function(){
                 choice1.addClass("match");
                 choice1.removeClass("open show")
                 class1 = "";
+                movesNum();
             }else{
                 $(this).addClass("open show");
                 choice2 = $(this);
                 class1 = "";
+                movesNum();
             }
 
         }
