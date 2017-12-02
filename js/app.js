@@ -8,9 +8,13 @@ const bolt = "<li class='card'><i class='fa fa-bolt'></i></li>";
 const cube = "<li class='card'><i class='fa fa-cube'></i></li>";
 const leaf = "<li class='card'><i class='fa fa-leaf'></i></li>";
 const bicycle = "<li class='card'><i class='fa fa-bicycle'></i></li>";
-const bomb = "<li class='card'><i class='fa fa-diamond'></i></li>";
+const bomb = "<li class='card'><i class='fa fa-bomb'></i></li>";
 
 let list = [diamond, plane, anchor, bolt, cube, leaf, bicycle, bomb, diamond, plane, anchor, bolt, cube, leaf, bicycle, bomb];
+
+let class1 = "";
+let choice1 = "";
+let choice2 = "";
 
 
 /*
@@ -41,7 +45,64 @@ for(let x = 0; x < list.length; x++){
     $(".deck").prepend(list[x]);
 }
 
+// click function to match cards
+$("li").click(function(){
+    if(this.getAttribute("class") === "card match"){
+        
+    }else{
+        if ($(this).attr("class") === "card open show"){
+            if(choice2 === ""){
+                console.log($(this));
+                $(this).removeClass("open show");
+                class1 = "";
+                choice1 = "";      
+            }else{
+                console.log($(this)); 
+                choice1.removeClass("open show");
+                class1 = "";
+                choice1 = "";
+                choice2.removeClass("open show");
+                choice2 = "";   
+            }   
+        }else{
+            if(class1 === ""){
+                if(choice1 === ""){
+                    $(this).addClass("open show");
+                    choice1 = $(this);
+                    class1 = $(this).children('i').attr("class");
+                    console.log(choice1);
+                }else{
+                    if(choice2 === ""){
+                       choice1.removeClass("open show");
+                        $(this).addClass("open show");
+                        choice1 = $(this);
+                        class1 = $(this).children('i').attr("class");
+                        console.log(choice1); 
+                    }else{
+                        choice1.removeClass("open show");
+                        choice2.removeClass("open show");
+                        choice2 = "";
+                        $(this).addClass("open show");
+                        choice1 = $(this);
+                        class1 = $(this).children('i').attr("class");
+                        console.log(choice1);
+                    }  
+                }
+            }else if($(this).children('i').attr("class") === class1){
+                $(this).removeClass("open show");
+                $(this).addClass("match");
+                choice1.addClass("match");
+                choice1.removeClass("open show")
+                class1 = "";
+            }else{
+                $(this).addClass("open show");
+                choice2 = $(this);
+                class1 = "";
+            }
 
+        }
+    }
+})
 
 /*
  * set up the event listener for a card. If a card is clicked:
