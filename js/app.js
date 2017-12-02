@@ -16,11 +16,6 @@ let class1 = "";
 let choice1 = "";
 let choice2 = "";
 
-function movesNum(){
-    let moves = $(".moves");
-    moves.html((parseInt(moves.html(),10)) + 1);
-}
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -42,6 +37,22 @@ function shuffle(array) {
 
     return array;
 }
+
+function movesStars(){
+    let moves = $(".moves");
+    moves.html((parseInt(moves.html(),10)) + 1);
+    if(parseInt(moves.html(),10) === 11){
+    $(".stars li:last-child").remove();
+    }else if(parseInt(moves.html(),10) === 19){
+    $(".stars li:last-child").remove();
+    }else if(parseInt(moves.html(),10) === 26){
+    $(".stars li:last-child").remove();
+    }
+}
+
+let move = parseInt($(".moves").html(),10);
+
+
 
 shuffle(list);
 
