@@ -60,6 +60,14 @@ function stopWatch( ) {
     } 
 }
 
+function win(){
+    if(count === 8){
+        gameON = false;
+        $(".container").prepend("<h1 class='win'>!! Congratulations !! </h1>");
+        $(".win").after("<h2>You Won "+$(".stars").children().length+" stars in "+time+" seconds</h2>");
+        $(".container h2").after("<h3>if you want to play again press the reload button.</h3>")
+    }
+}
 
 shuffle(list);
 
@@ -121,6 +129,7 @@ $("li").click(function(){
                 class1 = "";
                 movesStars();
                 count += 1;
+                win();
             }else{
                 $(this).addClass("open show");
                 choice2 = $(this);
@@ -130,6 +139,10 @@ $("li").click(function(){
 
         }
     }
+})
+
+$(".restart").click(function(){
+    location.reload();
 })
 
 /*
