@@ -18,6 +18,8 @@ let choice2 = "";
 let count = 0;
 let time = 0;
 let gameON = true;
+const modal = $("#myModal");
+const span = $(".close");
 
 /*
  * Display the cards on the page
@@ -55,7 +57,7 @@ function movesStars(){
 
 function stopWatch( ) {
     if(gameON){
-        time = setTimeout( "stopWatch( )", 1000 ) ; 
+        time = setTimeout( "stopWatch( )", 1000 ) - 2; 
         $(".seconds").html("<span class='seconds'>" + time + "</span>");
     } 
 }
@@ -63,9 +65,18 @@ function stopWatch( ) {
 function win(){
     if(count === 8){
         gameON = false;
-        $(".container").prepend("<h1 class='win'>!! Congratulations !! </h1>");
+        modal.css("display", "block");
         $(".win").after("<h2>You Won "+$(".stars").children().length+" stars in "+time+" seconds</h2>");
-        $(".container h2").after("<h3>if you want to play again press the reload button.</h3>")
+    }
+}
+
+span.onclick = function() {
+    modal.css("display", "none");
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.css("display", "none");
     }
 }
 
@@ -85,7 +96,6 @@ $("li").click(function(){
                 $(this).removeClass("open show");
                 class1 = "";
                 choice1 = "";
-                movesStars();
             }else{
                 choice1.removeClass("open show");
                 class1 = "";
