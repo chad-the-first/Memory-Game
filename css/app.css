@@ -107,3 +107,7 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.seconds {
+    padding-left: 20px;
+}

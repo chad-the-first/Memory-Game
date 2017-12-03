@@ -15,6 +15,9 @@ let list = [diamond, plane, anchor, bolt, cube, leaf, bicycle, bomb, diamond, pl
 let class1 = "";
 let choice1 = "";
 let choice2 = "";
+let count = 0;
+let time = 0;
+let gameON = true;
 
 /*
  * Display the cards on the page
@@ -42,16 +45,20 @@ function movesStars(){
     let moves = $(".moves");
     moves.html((parseInt(moves.html(),10)) + 1);
     if(parseInt(moves.html(),10) === 11){
-    $(".stars li:last-child").remove();
+        win();
+        $(".stars li:last-child").remove();
     }else if(parseInt(moves.html(),10) === 19){
-    $(".stars li:last-child").remove();
-    }else if(parseInt(moves.html(),10) === 26){
-    $(".stars li:last-child").remove();
+        win();
+        $(".stars li:last-child").remove();
     }
 }
 
-let move = parseInt($(".moves").html(),10);
-
+function stopWatch( ) {
+    if(gameON){
+        time = setTimeout( "stopWatch( )", 1000 ) - 2; 
+        $(".seconds").html("<span class='seconds'>" + time + "</span>");
+    } 
+}
 
 
 shuffle(list);
@@ -67,13 +74,11 @@ $("li").click(function(){
     }else{
         if ($(this).attr("class") === "card open show"){
             if(choice2 === ""){
-                console.log($(this));
                 $(this).removeClass("open show");
                 class1 = "";
                 choice1 = "";
-                movesNum();
+                movesStars();
             }else{
-                console.log($(this)); 
                 choice1.removeClass("open show");
                 class1 = "";
                 choice1 = "";
@@ -83,9 +88,16 @@ $("li").click(function(){
         }else{
             if(class1 === ""){
                 if(choice1 === ""){
-                    $(this).addClass("open show");
-                    choice1 = $(this);
-                    class1 = $(this).children('i').attr("class");
+                    if(time == 0){
+                        stopWatch();
+                        $(this).addClass("open show");
+                        choice1 = $(this);
+                        class1 = $(this).children('i').attr("class");
+                    }else{
+                        $(this).addClass("open show");
+                        choice1 = $(this);
+                        class1 = $(this).children('i').attr("class");
+                    }
                 }else{
                     if(choice2 === ""){
                        choice1.removeClass("open show");
@@ -107,12 +119,13 @@ $("li").click(function(){
                 choice1.addClass("match");
                 choice1.removeClass("open show")
                 class1 = "";
-                movesNum();
+                movesStars();
+                count += 1;
             }else{
                 $(this).addClass("open show");
                 choice2 = $(this);
                 class1 = "";
-                movesNum();
+                movesStars();
             }
 
         }
