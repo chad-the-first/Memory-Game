@@ -8,8 +8,8 @@ It uses Bootstrap fonts and JQuery.
 
 Here you see a screenshot at the start 
 
-![Alt text](/relative/path/to/img/shot.png?raw=true "Start Game")
+![Alt text](img/shot.png?raw=true "Start Game")
 
 And here a screen shot when you win
 
-![Alt text](/relative/path/to/img/win.png?raw=true "End Game")
+![Alt text](img/win.png?raw=true "End Game")
