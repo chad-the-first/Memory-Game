@@ -55,7 +55,7 @@ function movesStars(){
 
 function stopWatch( ) {
     if(gameON){
-        time = setTimeout( "stopWatch( )", 1000 ) - 2; 
+        time = setTimeout( "stopWatch( )", 1000 ) ; 
         $(".seconds").html("<span class='seconds'>" + time + "</span>");
     } 
 }
@@ -140,7 +140,7 @@ $("li").click(function(){
         }
     }
 })
-
+// replay listener
 $(".restart").click(function(){
     location.reload();
 })
